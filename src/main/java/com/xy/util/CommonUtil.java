@@ -106,7 +106,7 @@ public class CommonUtil {
                 token.setExpiresIn(jsonObject.getInt("expires_in"));
             } catch (JSONException e) {
                 token = null;
-                // 获取token失败
+                //TODO 获取token失败
                 //log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
             }
         }

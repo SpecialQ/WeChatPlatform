@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.dom4j.DocumentException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xy.bean.message.TextMessage;
 import com.xy.util.MessageUtil;
@@ -20,6 +22,7 @@ public class WeixinServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 5703001291951854817L;
 	
+	private static final Logger logger = LoggerFactory.getLogger(WeixinServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +31,7 @@ public class WeixinServlet extends HttpServlet {
         String timestamp = req.getParameter("timestamp");
         String nonce = req.getParameter("nonce");
         String echostr = req.getParameter("echostr");
+        logger.debug("接收到网络请求数据如下：signatre["+signature+"];timestamp["+timestamp+"];nonce["+nonce+"];echostr["+echostr+"]");
         
         WeixinConnector wxConn = new WeixinConnector(signature, timestamp, nonce);
         

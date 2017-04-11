@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  <welcome-file-list>
-    <welcome-file>welcome.html</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>WeixinServlet</servlet-name>
-    <servlet-class>com.xy.servlet.WeixinServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>WeixinServlet</servlet-name>
-    <url-pattern>/WeixinServlet</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<welcome-file-list>
+		<welcome-file>welcome.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>WeixinServlet</servlet-name>
+		<servlet-class>com.xy.servlet.WeixinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WeixinServlet</servlet-name>
+		<url-pattern>/WeixinServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <servlet-name>testServlet</servlet-name>
+        <servlet-class>com.xy.servlet.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testServlet</servlet-name>
+        <url-pattern>/testServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

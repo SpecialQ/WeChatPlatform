@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+	<!-- AppID(应用ID) -->
+	<AppID value="wxdd3ce89bb92face3" />
+	<!-- AppSecret(应用密钥) -->
+	<AppSecret value="608acc09bac975a28bf520591ef58a62" />
+</configuration>
