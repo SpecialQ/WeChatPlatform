@@ -1,4 +1,4 @@
-package com.xy.util;
+package com.xy.service;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -14,13 +14,37 @@ import javax.net.ssl.TrustManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import com.xy.bean.system.Token;
+import com.xy.util.WeChatX509TrustManager;
 
-public class CommonUtil {
-
-    // 凭证获取（GET）
+@Service
+public class AccessTokenService {
+	
+	// 凭证获取（GET）
     public final static String token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+	
+	protected Token getTokenBean() {
+		Token token = null;
+		//TODO 优化APPID和APPSECRET获取方式
+        String requestUrl = token_url.replace("APPID", "wxdd3ce89bb92face3").replace("APPSECRET", "608acc09bac975a28bf520591ef58a62" );
+        // 发起GET请求获取凭证
+        JSONObject jsonObject = httpsRequest(requestUrl, "GET", null);
+
+        if (null != jsonObject) {
+            try {
+                token = new Token();
+                token.setAccessToken(jsonObject.getString("access_token"));
+                token.setExpiresIn(jsonObject.getInt("expires_in"));
+            } catch (JSONException e) {
+                token = null;
+                //TODO 获取token失败
+                //log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
+            }
+        }
+        return token;
+	}
 
     /**
      * 发送https请求
@@ -30,7 +54,7 @@ public class CommonUtil {
      * @param outputStr 提交的数据
      * @return JSONObject(通过JSONObject.get(key)的方式获取json对象的属性值)
      */
-    public static JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr) {
+    private JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr) {
         JSONObject jsonObject = null;
         try {
             // 创建SSLContext对象，并使用我们指定的信任管理器初始化
@@ -85,31 +109,5 @@ public class CommonUtil {
         } 
         return jsonObject;
     }
-    
-    /**
-     * 获取接口访问凭证
-     * 
-     * @param appid 凭证
-     * @param appsecret 密钥
-     * @return
-     */
-    public static Token getToken(String appid, String appsecret) {
-        Token token = null;
-        String requestUrl = token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
-        // 发起GET请求获取凭证
-        JSONObject jsonObject = httpsRequest(requestUrl, "GET", null);
 
-        if (null != jsonObject) {
-            try {
-                token = new Token();
-                token.setAccessToken(jsonObject.getString("access_token"));
-                token.setExpiresIn(jsonObject.getInt("expires_in"));
-            } catch (JSONException e) {
-                token = null;
-                //TODO 获取token失败
-                //log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
-            }
-        }
-        return token;
-    }
 }

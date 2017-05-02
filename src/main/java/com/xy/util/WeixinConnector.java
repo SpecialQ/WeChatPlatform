@@ -3,7 +3,12 @@ package com.xy.util;
 import java.util.Arrays;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.util.StringUtils;
 
+/**
+ * 微信服务器地址链接具体实现
+ * @author SpecialQ
+ */
 public class WeixinConnector {
 
 	// 微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
@@ -35,9 +40,9 @@ public class WeixinConnector {
 	 * @return boolean 返回验证是否正确，true 验证成功；false 验证失败；
 	 */
 	public boolean verify() {
-		if (StringTool.isEmpty(signature) || 
-				StringTool.isEmpty(timestamp) || 
-				StringTool.isEmpty(nonce)) {
+		if (StringUtils.isEmpty(signature) || 
+				StringUtils.isEmpty(timestamp) || 
+				StringUtils.isEmpty(nonce)) {
 			return false;
 		}
 		String[] ArrTmp = { token, timestamp, nonce };
@@ -48,7 +53,7 @@ public class WeixinConnector {
 		}
 		String securityCode = DigestUtils.sha1Hex(sb.toString()); // 使用commons-codec生成sha1字符串
 
-		if (StringTool.trim(securityCode).equals(StringTool.trim(signature))) {
+		if (StringUtils.trimWhitespace(securityCode).equals(StringUtils.trimWhitespace(signature))) {
 			return true;
 		} else {
 			return false;

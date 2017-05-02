@@ -4,22 +4,30 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<welcome-file-list>
-		<welcome-file>welcome.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:springConfig/application-context.xml</param-value>
+    </context-param>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+	
 	<servlet>
-		<servlet-name>WeixinServlet</servlet-name>
-		<servlet-class>com.xy.servlet.WeixinServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>WeixinServlet</servlet-name>
-		<url-pattern>/WeixinServlet</url-pattern>
-	</servlet-mapping>
-	<servlet>
-        <servlet-name>testServlet</servlet-name>
-        <servlet-class>com.xy.servlet.TestServlet</servlet-class>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springConfig/SpringMVC-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
+    
     <servlet-mapping>
-        <servlet-name>testServlet</servlet-name>
-        <url-pattern>/testServlet</url-pattern>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 </web-app>
