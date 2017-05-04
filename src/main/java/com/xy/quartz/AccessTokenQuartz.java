@@ -1,17 +1,20 @@
 package com.xy.quartz;
 
-import java.util.Date;
-
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.xy.bean.system.Token;
+import com.xy.service.AccessTokenService;
+import com.xy.service.base.ApplicationContextManager;
 
 @Component
 public class AccessTokenQuartz {
 	
-	@Scheduled(cron = "0 0 0/2 * * *")
-	public void execute(){
-		long ms = System.currentTimeMillis();
-		System.out.println("hello world!!!"+new Date(ms));
+	@Scheduled(fixedRate = 2 * 60 * 60 * 1000)
+	public void execute() {
+		AccessTokenService accessTokenService = (AccessTokenService)ApplicationContextManager.getBean("AccessTokenService");
+		Token token = accessTokenService.getToken();
+		System.out.println(token.toString());
 	}
 
 }

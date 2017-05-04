@@ -1,6 +1,6 @@
 package com.xy.util;
 
-import java.io.IOException;
+/*import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.thoughtworks.xstream.XStream;
-import com.xy.bean.message.TextMessage;
+import com.xy.bean.message.TextMessage;*/
 
 /**
  * 实现消息的格式转换(Map类型和XML的互转)
@@ -41,7 +41,7 @@ public class MessageUtil {
 	 * @throws IOException
 	 * @throws DocumentException
 	 */
-	public static Map<String, String> xmlToMap(HttpServletRequest request) throws DocumentException, IOException {
+	/*public static Map<String, String> xmlToMap(HttpServletRequest request) throws DocumentException, IOException {
 		Map<String, String> map = new HashMap<String, String>();
 		SAXReader reader = new SAXReader(); // 使用dom4j解析xml
 		InputStream ins = request.getInputStream(); // 从request中获取输入流
@@ -55,16 +55,16 @@ public class MessageUtil {
 		
 		ins.close();
 		return map;
-	}
+	}*/
 
 	/**
 	 * 将文本消息对象转换成XML
 	 */
-	public static String textMessageToXML(TextMessage textMessage) {
+	/*public static String textMessageToXML(TextMessage textMessage) {
 
 		XStream xstream = new XStream(); // 使用XStream将实体类的实例转换成xml格式
 		xstream.alias("xml", textMessage.getClass()); // 将xml的默认根节点替换成“xml”
 		return xstream.toXML(textMessage);
 
-	}
+	}*/
 }

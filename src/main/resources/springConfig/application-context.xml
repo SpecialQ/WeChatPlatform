@@ -15,8 +15,13 @@
     
     <!-- 扫描com.xy.controller -->
     <context:component-scan base-package="com.xy.controller" />
-    <context:component-scan base-package="com.xy.quartz" />
+    <context:component-scan base-package="com.xy.service" />
     
+    
+    <!-- ======集成定时器模块====== -->
+    <!-- 扫描com.xy.quartz -->
+    <context:component-scan base-package="com.xy.quartz" />
+    <!-- 连接池配置 -->
     <task:executor id="executor" pool-size="5" />
     <task:scheduler id="scheduler" pool-size="10" />
     <task:annotation-driven executor="executor" scheduler="scheduler" />
@@ -46,6 +51,30 @@
 	    </property>
 	</bean>
 	 -->
+
+	<!-- ======配置管理模块====== -->
+	<bean id="XmlConfigAnalysis" class="com.xy.service.analysis.impl.XmlConfigAnalysis" init-method="init">
+        <property name="weChatConfigFilePath">
+            <value>WeChatConfiguration.xml</value>
+        </property>
+    </bean>
+	<bean id="ConfigurationManager" class="com.xy.service.base.ConfigurationManager" init-method="init">
+        <property name="analysisList">
+            <list>
+                <ref bean="XmlConfigAnalysis"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- ======Service层====== -->
+    <bean id="WeChatSecurityService" class="com.xy.service.WeChatSecurityService" lazy-init="true" />
+    
+    <bean id="AccessTokenService" class="com.xy.service.AccessTokenService">
+        <property name="tokenUrl">
+            <value>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</value>
+        </property>
+    </bean>
+    
     
     <!-- 一下为测试代码 -->
     

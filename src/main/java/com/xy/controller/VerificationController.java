@@ -1,4 +1,4 @@
-package com.xy.controller.server;
+package com.xy.controller;
 
 import java.io.IOException;
 
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xy.util.WeixinConnector;
+import com.xy.service.WeChatSecurityService;
+import com.xy.service.base.ApplicationContextManager;
 
 /**
  * 微信验证服务Controller
@@ -38,17 +39,18 @@ public class VerificationController {
 	public String verify(@RequestParam(name="signature") String signature,
 			@RequestParam(name="timestamp") String timestamp,
 			@RequestParam(name="nonce") String nonce,
-			@RequestParam(name="echostr") String echostr) throws IOException{
+			@RequestParam(name="echostr") String echostr) throws IOException {
 		// 接收微信服务器以Get请求发送的4个参数
-        logger.debug("接收到网络请求数据如下：signatre["+signature+"];timestamp["+timestamp+"];nonce["+nonce+"];echostr["+echostr+"]");
+        logger.info("接收到网络请求数据如下：signatre[{}];timestamp[{}];nonce[{}];echostr[{}]", signature, timestamp, nonce, echostr);
         
-        WeixinConnector wxConn = new WeixinConnector(signature, timestamp, nonce);
+        WeChatSecurityService WeChatSecurityService = 
+        		(WeChatSecurityService)ApplicationContextManager.getBean("WeChatSecurityService", signature, timestamp, nonce);
         
-        if (wxConn.verify()) {
-            logger.debug("验证成功！");
+        if (WeChatSecurityService.verify()) {
+            logger.info("验证成功！");
             return echostr;
         }else{
-        	logger.debug("验证失败！");
+        	logger.info("验证失败！");
         	return "";
         }
 	}
