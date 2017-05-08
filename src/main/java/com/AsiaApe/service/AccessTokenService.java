@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import com.AsiaApe.bean.system.Token;
 import com.AsiaApe.service.analysis.impl.XmlConfigAnalysis;
@@ -15,7 +14,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-@Service
 public class AccessTokenService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccessTokenService.class);
