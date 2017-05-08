@@ -1,4 +1,4 @@
-package com.xy.util;
+package com.AsiaApe.util;
 
 /*import java.io.IOException;
 import java.io.InputStream;

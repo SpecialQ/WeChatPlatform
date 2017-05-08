@@ -1,4 +1,4 @@
-package com.xy.service.analysis.impl;
+package com.AsiaApe.service.analysis.impl;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.xy.service.analysis.ConfigAnalysis;
-import com.xy.util.AppConstants;
+import com.AsiaApe.service.analysis.ConfigAnalysis;
+import com.AsiaApe.util.AppConstants;
 
 @Component
 public class XmlConfigAnalysis implements ConfigAnalysis {

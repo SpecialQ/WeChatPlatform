@@ -1,4 +1,4 @@
-package com.xy.controller;
+package com.AsiaApe.controller;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xy.service.WeChatSecurityService;
-import com.xy.service.base.ApplicationContextManager;
+import com.AsiaApe.service.WeChatSecurityService;
+import com.AsiaApe.service.base.ApplicationContextManager;
 
 /**
  * 微信验证服务Controller

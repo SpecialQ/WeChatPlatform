@@ -1,11 +1,11 @@
-package com.xy.quartz;
+package com.AsiaApe.quartz;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.xy.bean.system.Token;
-import com.xy.service.AccessTokenService;
-import com.xy.service.base.ApplicationContextManager;
+import com.AsiaApe.bean.system.Token;
+import com.AsiaApe.service.AccessTokenService;
+import com.AsiaApe.service.base.ApplicationContextManager;
 
 @Component
 public class AccessTokenQuartz {

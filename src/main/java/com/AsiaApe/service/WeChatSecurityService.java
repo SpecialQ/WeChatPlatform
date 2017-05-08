@@ -1,4 +1,4 @@
-package com.xy.service;
+package com.AsiaApe.service;
 
 import java.util.Arrays;
 
@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.xy.service.analysis.impl.XmlConfigAnalysis;
-import com.xy.service.base.ConfigurationManager;
+import com.AsiaApe.service.analysis.impl.XmlConfigAnalysis;
+import com.AsiaApe.service.base.ConfigurationManager;
 
 /**
  * 

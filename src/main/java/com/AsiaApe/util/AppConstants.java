@@ -1,4 +1,4 @@
-package com.xy.util;
+package com.AsiaApe.util;
 
 public class AppConstants {
 	public static final String EMPTY_STRING = "";

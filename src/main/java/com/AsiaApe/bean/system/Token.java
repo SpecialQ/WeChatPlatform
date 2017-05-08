@@ -1,4 +1,4 @@
-package com.xy.bean.system;
+package com.AsiaApe.bean.system;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

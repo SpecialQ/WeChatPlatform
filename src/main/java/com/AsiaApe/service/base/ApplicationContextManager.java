@@ -1,4 +1,4 @@
-package com.xy.service.base;
+package com.AsiaApe.service.base;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

@@ -1,4 +1,4 @@
-package com.xy.service.analysis;
+package com.AsiaApe.service.analysis;
 
 import java.util.Map;
 

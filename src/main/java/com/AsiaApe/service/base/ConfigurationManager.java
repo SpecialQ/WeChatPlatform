@@ -1,4 +1,4 @@
-package com.xy.service.base;
+package com.AsiaApe.service.base;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.xy.service.analysis.ConfigAnalysis;
+import com.AsiaApe.service.analysis.ConfigAnalysis;
 
 @Component
 public class ConfigurationManager {

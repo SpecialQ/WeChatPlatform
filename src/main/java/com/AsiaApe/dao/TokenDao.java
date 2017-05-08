@@ -1,10 +1,10 @@
-package com.xy.dao;
+package com.AsiaApe.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import com.xy.bean.system.Token;
+import com.AsiaApe.bean.system.Token;
 
 public class TokenDao {
 	private final String KEY = "global:token";

@@ -1,4 +1,4 @@
-package com.xy.bean.message;
+package com.AsiaApe.bean.message;
 
 /**
  * 请求消息的基类

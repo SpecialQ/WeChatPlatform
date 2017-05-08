@@ -13,14 +13,14 @@
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-4.1.xsd">
     
-    <!-- 扫描com.xy.controller -->
-    <context:component-scan base-package="com.xy.controller" />
-    <context:component-scan base-package="com.xy.service" />
+    <!-- 扫描com.AsiaApe.controller -->
+    <context:component-scan base-package="com.AsiaApe.controller" />
+    <context:component-scan base-package="com.AsiaApe.service" />
     
     
     <!-- ======集成定时器模块====== -->
-    <!-- 扫描com.xy.quartz -->
-    <context:component-scan base-package="com.xy.quartz" />
+    <!-- 扫描com.AsiaApe.quartz -->
+    <context:component-scan base-package="com.AsiaApe.quartz" />
     <!-- 连接池配置 -->
     <task:executor id="executor" pool-size="5" />
     <task:scheduler id="scheduler" pool-size="10" />
@@ -28,7 +28,7 @@
     
     <!-- 非注解方式的Quartz实现
     // 定时器具体业务实现
-    <bean id="AccessTokenQuartz" class="com.xy.quartz.AccessTokenQuartz"/>
+    <bean id="AccessTokenQuartz" class="com.AsiaApe.quartz.AccessTokenQuartz"/>
     <bean id="SpringQtzJobMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 	    <property name="targetObject">
 	        <ref bean="AccessTokenQuartz"/>
@@ -53,12 +53,12 @@
 	 -->
 
 	<!-- ======配置管理模块====== -->
-	<bean id="XmlConfigAnalysis" class="com.xy.service.analysis.impl.XmlConfigAnalysis" init-method="init">
+	<bean id="XmlConfigAnalysis" class="com.AsiaApe.service.analysis.impl.XmlConfigAnalysis" init-method="init">
         <property name="weChatConfigFilePath">
             <value>WeChatConfiguration.xml</value>
         </property>
     </bean>
-	<bean id="ConfigurationManager" class="com.xy.service.base.ConfigurationManager" init-method="init">
+	<bean id="ConfigurationManager" class="com.AsiaApe.service.base.ConfigurationManager" init-method="init">
         <property name="analysisList">
             <list>
                 <ref bean="XmlConfigAnalysis"/>
@@ -67,9 +67,9 @@
     </bean>
     
     <!-- ======Service层====== -->
-    <bean id="WeChatSecurityService" class="com.xy.service.WeChatSecurityService" lazy-init="true" />
+    <bean id="WeChatSecurityService" class="com.AsiaApe.service.WeChatSecurityService" lazy-init="true" />
     
-    <bean id="AccessTokenService" class="com.xy.service.AccessTokenService">
+    <bean id="AccessTokenService" class="com.AsiaApe.service.AccessTokenService">
         <property name="tokenUrl">
             <value>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</value>
         </property>
