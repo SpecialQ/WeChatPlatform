@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.AsiaApe.service.analysis.impl.XmlConfigAnalysis;
@@ -16,7 +15,6 @@ import com.AsiaApe.service.base.ConfigurationManager;
  * 微信平台的安全信息服务
  * @author SpecialQ
  */
-@Service
 public class WeChatSecurityService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(WeChatSecurityService.class);

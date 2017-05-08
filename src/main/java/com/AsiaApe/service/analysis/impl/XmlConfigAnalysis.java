@@ -10,13 +10,11 @@ import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.AsiaApe.service.analysis.ConfigAnalysis;
 import com.AsiaApe.util.AppConstants;
 
-@Component
 public class XmlConfigAnalysis implements ConfigAnalysis {
 	
 	private static final Logger logger = LoggerFactory.getLogger(XmlConfigAnalysis.class);
