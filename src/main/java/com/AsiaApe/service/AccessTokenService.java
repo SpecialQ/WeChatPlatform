@@ -21,11 +21,11 @@ public class AccessTokenService {
 	// 微信提供的凭证获取的URL地址（GET）
     public String tokenUrl;
     
-    public void setTokenUrl(String tokenUrl) {
+    public void setTokenUrl(String tokenUrl){
     	String appId = ConfigurationManager.getConfigValue(XmlConfigAnalysis.CONFIG_KEY_APPID);
     	String appSecret = ConfigurationManager.getConfigValue(XmlConfigAnalysis.CONFIG_KEY_APPSECRET);
-		this.tokenUrl = tokenUrl.replace("APPID", appId).replace("APPSECRET", appSecret);
-	}
+    	this.tokenUrl = tokenUrl.replace("APPID", appId).replace("APPSECRET", appSecret);
+    }
     
     public Token getToken(){
     	Token token = null;
