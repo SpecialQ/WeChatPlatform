@@ -6,11 +6,9 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import com.AsiaApe.service.analysis.ConfigAnalysis;
 
-@Component
 public class ConfigurationManager {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ConfigurationManager.class);

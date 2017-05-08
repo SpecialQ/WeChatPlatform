@@ -2,9 +2,7 @@ package com.AsiaApe.service.base;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ApplicationContextManager implements ApplicationContextAware {
 
 	private static ApplicationContext applicationContext;

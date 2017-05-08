@@ -16,7 +16,6 @@ import org.springframework.util.StringUtils;
 import com.AsiaApe.service.analysis.ConfigAnalysis;
 import com.AsiaApe.util.AppConstants;
 
-@Component
 public class XmlConfigAnalysis implements ConfigAnalysis {
 	
 	private static final Logger logger = LoggerFactory.getLogger(XmlConfigAnalysis.class);

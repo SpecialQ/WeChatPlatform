@@ -1,6 +1,5 @@
-package com.AsiaApe.dao;
+package com.AsiaApe.dao.redis;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
@@ -14,7 +13,6 @@ public class TokenDao {
 	public TokenDao() {
 	}
 	
-	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 	
 	public void save(Token token) {
