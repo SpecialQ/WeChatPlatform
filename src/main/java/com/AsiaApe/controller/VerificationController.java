@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.AsiaApe.service.WeChatSecurityService;
-import com.AsiaApe.service.base.ApplicationContextManager;
 
 /**
  * 微信验证服务Controller
@@ -21,6 +21,9 @@ import com.AsiaApe.service.base.ApplicationContextManager;
 public class VerificationController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(VerificationController.class);
+	
+	@Autowired
+	private WeChatSecurityService WeChatSecurityService;
 	
 	/**
 	 * 验证服务器地址的有效性
@@ -42,9 +45,7 @@ public class VerificationController {
 			@RequestParam(name="echostr") String echostr) throws IOException {
 		// 接收微信服务器以Get请求发送的4个参数
         logger.info("接收到网络请求数据如下：signatre[{}];timestamp[{}];nonce[{}];echostr[{}]", signature, timestamp, nonce, echostr);
-        
-        WeChatSecurityService WeChatSecurityService = 
-        		(WeChatSecurityService)ApplicationContextManager.getBean("WeChatSecurityService", signature, timestamp, nonce);
+        WeChatSecurityService.setParam(signature, timestamp, nonce);
         
         if (WeChatSecurityService.verify()) {
             logger.info("验证成功！");
