@@ -28,6 +28,15 @@
         <property name="properties" ref="configProperties" />
     </bean>
     
+    <!-- ==================Service层================== -->
+    <bean id="WeChatSecurityService" class="com.AsiaApe.service.WeChatSecurityService" />
+
+    <bean id="AccessTokenService" class="com.AsiaApe.service.AccessTokenService" >
+	    <property name="tokenUrl">
+            <value>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</value>
+        </property>
+    </bean>
+    
     <!-- ==================jedisConnectionFactory================== -->
     <bean id="jedisConnFactory"
         class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
@@ -46,6 +55,7 @@
 	<!-- ==================定时器模块================== -->
     <!-- 扫描com.AsiaApe.quartz -->
     <context:component-scan base-package="com.AsiaApe.quartz" />
+
     <!-- 连接池配置 -->
     <task:executor id="executor" pool-size="5" />
     <task:scheduler id="scheduler" pool-size="10" />
