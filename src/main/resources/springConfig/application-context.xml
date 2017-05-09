@@ -28,15 +28,6 @@
         <property name="properties" ref="configProperties" />
     </bean>
     
-    <!-- ==================Service层================== -->
-    <bean id="WeChatSecurityService" class="com.AsiaApe.service.WeChatSecurityService" />
-
-    <bean id="AccessTokenService" class="com.AsiaApe.service.AccessTokenService" >
-	    <property name="tokenUrl">
-            <value>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</value>
-        </property>
-    </bean>
-    
     <!-- ==================jedisConnectionFactory================== -->
     <bean id="jedisConnFactory"
         class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
