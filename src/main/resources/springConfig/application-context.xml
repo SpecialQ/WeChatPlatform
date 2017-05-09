@@ -13,8 +13,10 @@
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-4.1.xsd">
 
-    <!-- ==================加载properties配置文件信息================== -->
     <context:component-scan base-package="com.AsiaApe.service" />
+    <context:component-scan base-package="com.AsiaApe.dao" />
+
+    <!-- ==================加载properties配置文件信息================== -->
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>
@@ -26,62 +28,33 @@
         <property name="properties" ref="configProperties" />
     </bean>
     
-    <!-- ==================Service层================== -->
-    <bean id="WeChatSecurityService" class="com.AsiaApe.service.WeChatSecurityService" />
-
-    <bean id="AccessTokenService" class="com.AsiaApe.service.AccessTokenService" >
-	    <property name="tokenUrl">
-            <value>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</value>
-        </property>
-    </bean>
+    <!-- ==================jedisConnectionFactory================== -->
+    <bean id="jedisConnFactory"
+        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+        p:host-name="127.0.0.1" p:port="6379" />
+    
+    <!-- redis template definition -->
+    <bean id="redisTemplate" 
+        class="org.springframework.data.redis.core.RedisTemplate" 
+        p:connection-factory-ref="jedisConnFactory" />
+        
+    <!-- redis template definition -->
+    <bean id="stringRedisTemplate" 
+        class="org.springframework.data.redis.core.StringRedisTemplate" 
+        p:connection-factory-ref="jedisConnFactory" />
 
 	<!-- ==================定时器模块================== -->
     <!-- 扫描com.AsiaApe.quartz -->
     <context:component-scan base-package="com.AsiaApe.quartz" />
-
     <!-- 连接池配置 -->
     <task:executor id="executor" pool-size="5" />
     <task:scheduler id="scheduler" pool-size="10" />
     <task:annotation-driven executor="executor" scheduler="scheduler" />
-    <!-- 非注解方式的Quartz实现
-    // 定时器具体业务实现
-    <bean id="AccessTokenQuartz" class="com.AsiaApe.quartz.AccessTokenQuartz"/>
-    <bean id="SpringQtzJobMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-	    <property name="targetObject">
-	        <ref bean="AccessTokenQuartz"/>
-	    </property>
-	    <property name="targetMethod">
-	        <value>execute</value>
-	    </property>
+    
+    <!-- ==================装配AccessToken服务，配置Http请求的Url地址================== -->
+    <bean id="AccessTokenService" class="com.AsiaApe.service.AccessTokenService" >
+        <property name="tokenUrl">
+            <value>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</value>
+        </property>
     </bean>
-    // 调度触发器 
-	<bean id="CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-	    <property name="jobDetail" ref="SpringQtzJobMethod"></property>
-	    <property name="cronExpression" value="0 0 0/2 * * ?"></property>
-	</bean>
-	// 调度工厂
-	<bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-	    <property name="triggers">
-	        <list>
-	            <ref bean="CronTriggerBean"/>
-	        </list>
-	    </property>
-	</bean>
-	 -->
-	 
-	<!-- 以下为测试代码 -->
-	<!-- jedisConnectionFactory -->
-    <bean id="jedisConnFactory"
-        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-        p:host-name="127.0.0.1" p:port="6379" />
-	
-	<!-- redis template definition -->
-	<bean id="redisTemplate" 
-	    class="org.springframework.data.redis.core.RedisTemplate" 
-	    p:connection-factory-ref="jedisConnFactory" />
-	    
-	<!-- redis template definition -->
-    <bean id="stringRedisTemplate" 
-        class="org.springframework.data.redis.core.StringRedisTemplate" 
-        p:connection-factory-ref="jedisConnFactory" />
 </beans>
