@@ -4,10 +4,9 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.AsiaApe.bean.system.Token;
-import com.AsiaApe.service.analysis.impl.XmlConfigAnalysis;
-import com.AsiaApe.service.base.ConfigurationManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import okhttp3.OkHttpClient;
@@ -21,9 +20,12 @@ public class AccessTokenService {
 	// 微信提供的凭证获取的URL地址（GET）
     public String tokenUrl;
     
+    @Value("${WeChat.AppID}")
+    private String appId;
+    @Value("${WeChat.AppSecret}")
+    private String appSecret;
+    
     public void setTokenUrl(String tokenUrl){
-    	String appId = ConfigurationManager.getConfigValue(XmlConfigAnalysis.CONFIG_KEY_APPID);
-    	String appSecret = ConfigurationManager.getConfigValue(XmlConfigAnalysis.CONFIG_KEY_APPSECRET);
     	this.tokenUrl = tokenUrl.replace("APPID", appId).replace("APPSECRET", appSecret);
     }
     

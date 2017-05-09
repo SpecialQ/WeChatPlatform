@@ -5,10 +5,8 @@ import java.util.Arrays;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
-
-import com.AsiaApe.service.analysis.impl.XmlConfigAnalysis;
-import com.AsiaApe.service.base.ConfigurationManager;
 
 /**
  * 
@@ -26,16 +24,13 @@ public class WeChatSecurityService {
 	// Ëæ»úÊý
 	private String nonce;
 	// ÁîÅÆ
+	@Value("${WeChat.Token}")
 	private String token;
 	
-	public WeChatSecurityService() {
-	}
-	
-	public WeChatSecurityService(String signature, String timestamp, String nonce) {
+	public void setParam(String signature, String timestamp, String nonce){
 		this.signature = signature;
 		this.timestamp = timestamp;
 		this.nonce = nonce;
-		this.token = ConfigurationManager.getConfigValue(XmlConfigAnalysis.CONFIG_KEY_TOKEN);
 	}
 	
 	/**
